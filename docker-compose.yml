@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  app:
+    build: 
+    # To build the image from the Dockerfile in the current directory, use the build key with the context set to the current directory.
+        context: .
+    ports:
+      - "8000:8000"
+    # The volumes key is used to mount the app directory from the host into the container. This allows for live code reloading.
+    #we don't need to rebuild the image every time we make a change to the code.
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+
